@@ -33,7 +33,7 @@ public class FooDbConfig {
   @Bean(name = "entityManagerFactory")
   public LocalContainerEntityManagerFactoryBean entityManagerFactory(
       EntityManagerFactoryBuilder builder, @Qualifier("dataSource") DataSource dataSource) {
-    return builder.dataSource(dataSource).packages("com.foobar.foo.domain").persistenceUnit("foo")
+    return builder.dataSource(dataSource).packages("com.foobar.foo.domain")
         .build();
   }
 
