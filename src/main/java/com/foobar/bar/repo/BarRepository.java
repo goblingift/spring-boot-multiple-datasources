@@ -3,11 +3,11 @@ package com.foobar.bar.repo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.foobar.bar.domain.Bar;
+import com.foobar.foo.domain.Foo;
 
 @Repository
-public interface BarRepository extends JpaRepository<Bar, Long> {
+public interface BarRepository extends JpaRepository<Foo, Long> {
 
-  Bar findById(Long id);
-  Bar findByBar(String bar);
+  Foo findById(Long id);
+  Foo findByFoo(String foo);
 }

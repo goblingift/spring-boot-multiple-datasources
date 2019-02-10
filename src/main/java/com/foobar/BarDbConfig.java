@@ -30,7 +30,7 @@ public class BarDbConfig {
   @Bean(name = "barEntityManagerFactory")
   public LocalContainerEntityManagerFactoryBean barEntityManagerFactory(
       EntityManagerFactoryBuilder builder, @Qualifier("barDataSource") DataSource dataSource) {
-    return builder.dataSource(dataSource).packages("com.foobar.bar.domain").persistenceUnit("bar")
+    return builder.dataSource(dataSource).packages("com.foobar.bar.domain", "com.foobar.foo.domain").persistenceUnit("bar")
         .build();
   }
 

@@ -27,9 +27,9 @@ public class FooBarController {
     @RequestMapping("/foobar/{value}")
     public String fooBar(@PathVariable("value") String value) {
         Foo foo = fooRepo.findByFoo(value);
-        Bar bar = barRepo.findByBar(value);
+        Foo bar = barRepo.findByFoo(value);
 
-        return foo.getFoo() + " " + bar.getBar() + "!";
+        return foo.getFoo() + " " + bar.getFoo()+ "!";
     }
 
     @RequestMapping("/foo/add/{value}")
@@ -49,17 +49,17 @@ public class FooBarController {
 
     @RequestMapping("/bar/values")
     public String getBarValues() {
-        List<Bar> allResults = barRepo.findAll();
+        List<Foo> allResults = barRepo.findAll();
         return allResults.stream()
-                .map(f -> f.getBar())
+                .map(f -> f.getFoo())
                 .collect(Collectors.joining(","));
     }
 
     @RequestMapping("/bar/add/{value}")
     public void addBar(@PathVariable("value") String value) {
-        Bar bar = new Bar();
-        bar.setBar(value);
-        barRepo.saveAndFlush(bar);
+        Foo foo = new Foo();
+        foo.setFoo(value);
+        barRepo.saveAndFlush(foo);
     }
 
 }
