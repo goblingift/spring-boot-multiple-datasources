@@ -9,5 +9,5 @@ import com.foobar.foo.domain.Foo;
 public interface FooRepository extends JpaRepository<Foo, Long> {
 
   Foo findById(Long id);
-
+  Foo findByFoo(String foo);
 }
