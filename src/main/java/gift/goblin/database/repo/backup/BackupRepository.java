@@ -8,6 +8,5 @@ import gift.goblin.database.model.Foo;
 @Repository
 public interface BackupRepository extends JpaRepository<Foo, Long> {
 
-  Foo findById(Long id);
   Foo findByFoo(String foo);
 }

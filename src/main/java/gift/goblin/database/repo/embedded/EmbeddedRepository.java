@@ -8,6 +8,5 @@ import gift.goblin.database.model.Foo;
 @Repository
 public interface EmbeddedRepository extends JpaRepository<Foo, Long> {
 
-  Foo findById(Long id);
   Foo findByFoo(String foo);
 }
