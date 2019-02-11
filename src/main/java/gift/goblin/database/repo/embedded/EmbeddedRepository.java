@@ -1,12 +1,12 @@
-package com.foobar.bar.repo;
+package gift.goblin.database.repo.embedded;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.foobar.foo.domain.Foo;
+import gift.goblin.database.model.Foo;
 
 @Repository
-public interface BarRepository extends JpaRepository<Foo, Long> {
+public interface EmbeddedRepository extends JpaRepository<Foo, Long> {
 
   Foo findById(Long id);
   Foo findByFoo(String foo);

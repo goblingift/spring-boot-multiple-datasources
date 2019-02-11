@@ -1,4 +1,4 @@
-package com.foobar.bar.domain;
+package gift.goblin.database.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

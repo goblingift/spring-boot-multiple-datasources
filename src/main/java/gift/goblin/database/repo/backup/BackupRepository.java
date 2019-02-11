@@ -1,12 +1,12 @@
-package com.foobar.foo.repo;
+package gift.goblin.database.repo.backup;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.foobar.foo.domain.Foo;
+import gift.goblin.database.model.Foo;
 
 @Repository
-public interface FooRepository extends JpaRepository<Foo, Long> {
+public interface BackupRepository extends JpaRepository<Foo, Long> {
 
   Foo findById(Long id);
   Foo findByFoo(String foo);

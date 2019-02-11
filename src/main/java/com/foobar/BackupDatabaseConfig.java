@@ -9,7 +9,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -18,29 +17,27 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(entityManagerFactoryRef = "entityManagerFactory",
-    basePackages = {"com.foobar.foo.repo"})
-public class FooDbConfig {
+@EnableJpaRepositories(entityManagerFactoryRef = "backupEntityManagerFactory",
+    transactionManagerRef = "backupTransactionManager", basePackages = {"gift.goblin.database.repo.backup"})
+public class BackupDatabaseConfig {
 
-  @Primary
-  @Bean(name = "dataSource")
-  @ConfigurationProperties(prefix = "spring.datasource")
+  @Bean(name = "backupDataSource")
+  @ConfigurationProperties(prefix = "backup.datasource")
   public DataSource dataSource() {
     return DataSourceBuilder.create().build();
   }
 
-  @Primary
-  @Bean(name = "entityManagerFactory")
-  public LocalContainerEntityManagerFactoryBean entityManagerFactory(
-      EntityManagerFactoryBuilder builder, @Qualifier("dataSource") DataSource dataSource) {
-    return builder.dataSource(dataSource).packages("com.foobar.foo.domain")
+  @Bean(name = "backupEntityManagerFactory")
+  public LocalContainerEntityManagerFactoryBean backupEntityManagerFactory(
+      EntityManagerFactoryBuilder builder, @Qualifier("backupDataSource") DataSource dataSource) {
+    return builder.dataSource(dataSource).packages("gift.goblin.database.model")
         .build();
   }
 
-  @Primary
-  @Bean(name = "transactionManager")
-  public PlatformTransactionManager transactionManager(
-      @Qualifier("entityManagerFactory") EntityManagerFactory entityManagerFactory) {
-    return new JpaTransactionManager(entityManagerFactory);
+  @Bean(name = "backupTransactionManager")
+  public PlatformTransactionManager backupTransactionManager(
+      @Qualifier("backupEntityManagerFactory") EntityManagerFactory backupEntityManagerFactory) {
+    return new JpaTransactionManager(backupEntityManagerFactory);
   }
+
 }
